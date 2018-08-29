@@ -1,0 +1,17 @@
+server:
+ port: 9002
+management:
+ endpoints:
+  web:
+   exposure:
+    include: hystrix.stream, info, health, turbine.stream
+eureka:
+ client:
+  serviceUrl:
+   defaultZone: http://localhost:8762/eureka/,http://localhost:8763/eureka/,http://localhost:8764/eureka/
+ instance:
+  metadata-map:
+   instanceId: ${spring.Application.name}:${server.port}/   
+turbine:
+ cluster-name-expression: 'default'
+ appConfig: usuarios, vales

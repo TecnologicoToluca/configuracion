@@ -1,0 +1,25 @@
+server:
+ port: 8081
+spring:
+ datasource:
+  url: jdbc:oracle:thin:@172.16.164.43:15210/VAMEBDQA
+  username: VAMEQA_USER
+  password: VAMEBDQA#14
+  driver-class-name: oracle.jdbc.driver.OracleDriver
+ jpa:
+  database-platform: org.hibernate.dialect.Oracle10gDialect
+  show-sql: true
+  hibernate: 
+   ddl-auto: none   
+management:
+ endpoints:
+  web:
+   exposure:
+    include: hystrix.stream, info, health, turbine.stream
+eureka:
+ client:
+  serviceUrl:
+   defaultZone: http://lstktr76754.stkrursus.com:8762/eureka/,http://lstktr76754.stkrursus.com:8763/eureka/,http://lstktr76754.stkrursus.com:8764/eureka/
+ instance:
+  metadata-map:
+   instanceId: ${spring.Application.name}:${server.port}/   

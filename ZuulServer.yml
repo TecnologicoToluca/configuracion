@@ -1,0 +1,23 @@
+server:
+ port: 8085
+eureka:
+ client:
+  serviceUrl:
+   defaultZone: http://localhost:8762/eureka/,http://localhost:8763/eureka/,http://localhost:8764/eureka/
+ instance:
+  metadata-map:
+   instanceId: ${spring.Application.name}:${server.port}/
+management:
+ endpoints:
+  web:
+   exposure:
+    include: info, health
+zuul:
+ routes:
+  usuarios:
+   path: /usuarios/**
+   serviceId: usuarios
+  vales:
+   path: /vales/**
+   serviceId: vales 
+           
